@@ -35,7 +35,7 @@ export const loginUser = async (data: LoginUserPayload) => {
 };
 
 export const logoutUser = async () => {
-    const res = await fetch("http://localhost:9090/user/login", {
+    const res = await fetch("http://localhost:9090/user/logout", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

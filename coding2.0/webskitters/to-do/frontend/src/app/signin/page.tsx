@@ -16,7 +16,7 @@ import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
 import ForgotPassword from "@/components/ForgotPassword";
-import { LoginUser } from "@/services/UserService";
+import { loginUser } from "@/services/UserService";
 import { LoginUserPayload } from "@/interfaces/payload.types/LoginUserPayload";
 import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -108,7 +108,7 @@ export default function SignIn() {
         userPassword: data.get("password")?.toString() || "",
       };
       try {
-        const res = await LoginUser(UserDataPayload);
+        const res = await loginUser(UserDataPayload);
         if (res.ok) {
           const Finaldata = await res.json();
           setUser(Finaldata.user);

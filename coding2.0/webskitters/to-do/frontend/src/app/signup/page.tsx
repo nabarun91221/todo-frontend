@@ -15,7 +15,7 @@ import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
-import { RegisterUser } from "../../services/UserService";
+import { registerUser } from "../../services/UserService";
 import { RegisterUserPayload } from "@/interfaces/payload.types/RegisterUserPayload";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -168,7 +168,7 @@ export default function SignUp() {
       password: formData.get("password")?.toString() || "",
     };
     // console.log(UserDataPayload);
-    const res = await RegisterUser(UserDataPayload);
+    const res = await registerUser(UserDataPayload);
     const data = await res.json();
 
     if (data.message == "successful") {

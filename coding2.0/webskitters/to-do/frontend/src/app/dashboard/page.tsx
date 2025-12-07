@@ -1,39 +1,29 @@
 "use client";
-
-import { UserInfo } from "@/Types/UserType";
 import React, { useEffect, useState } from "react";
-import { fetchUserInfo } from "@/service/UserService";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import { LinearProgress } from "@mui/material";
-import { GetTheme } from "@/util/GetTheme";
 import "react-toastify/dist/ReactToastify.css";
 import { redirect } from "next/navigation";
-import Nav from "@/component/Nav";
-// import { WebpaperApplicationData } from "@/Types/WebpaperApplicationData";
-import { GetWebpaperApplicationData } from "@/service/WebpapperApplicationDataService";
-import WebpaperCard from "@/component/WebpaperCard";
-// import {webpaperApplicationDataDummy} from "@/dummy_data/webpaperApplicationDataDummy";
-import LoadingWithBackdrop from "@/component/LoadingWithBackdrop";
-import webpaperStore from "@/store/webpaperStore";
+import Nav from "@/components/Nav";
+import LoadingWithBackdrop from "@/components/LoadingWithBackdrop";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import {getBreadcrumb} from "@/util/GetBreadcrumb";
-import EditSectionForm from "@/component/EditSectionForm";
-import {UpdateTopicPayload} from "@/Types/WebpaperApplicationData";
+import EditSectionForm from "@/components/EditSectionForm";
 import EditIcon from '@mui/icons-material/Edit';
 import Tooltip from "@mui/material/Tooltip";
 import {isMobileDevice} from "@/util/DeviceDetect";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
-import {deleteTopic as dt,renameTopic as rt} from "@/service/WebpapperApplicationDataService";
+import { useThemeMode } from "@/util/GetTheme";
+import { User } from "@/interfaces/user.type";
 
 
 const Dashboard = () => {
 
   const isMobile=isMobileDevice();
-  const theme = GetTheme();
+  const theme = useThemeMode();
   const [isProgress, setIsProgress] = useState(false);
-  const [user, setUser] = useState<UserInfo | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   const notify = (msg: string) => {
     toast.success(msg, {
